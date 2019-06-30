@@ -50,7 +50,7 @@ var app = angular.module('myApp', [
   }
 
   $scope.sendEmployeeForUpdate = function (employee) {
-    $scope.employeesForm = employee;
+    $scope.employeesForm = angular.copy(employee);
     $scope.isEditActive = true;
     $scope.form.$setDirty();
   }

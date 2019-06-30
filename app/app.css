@@ -49,12 +49,25 @@ td {
   height: 25px;
 }*/
 
+table {
+  overflow-y: auto;
+}
+
 th {
   text-align: center;
 }
 
 th:hover {
   cursor: pointer;
+}
+
+td {
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+.no-rounding {
+  border-radius: 0 !important;
 }
 
 ul {

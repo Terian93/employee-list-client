@@ -26,8 +26,8 @@ var app = angular.module('myApp', [
       console.log('filter: \"' + $scope.filter + '\"');
     }
   }
-  
-  $scope.form = {};
+  $scope.search = '';
+  $scope.employeesForm = {};
 
   $scope.getEmployeesList = () => {
     const promise = employeesDBService.getEmployeesList()
@@ -50,37 +50,40 @@ var app = angular.module('myApp', [
   }
 
   $scope.sendEmployeeForUpdate = function (employee) {
-    $scope.form = employee;
+    $scope.employeesForm = employee;
     $scope.isEditActive = true;
+    $scope.form.$setDirty();
   }
 
   $scope.formButton = function () {
     if ($scope.isEditActive) {
       const body = {
-        name: $scope.form.name,
-	      surname: $scope.form.surname,
-	      sex: $scope.form.sex,
-	      phone: $scope.form.phone,
-	      dateOfBirth: $scope.form.dateOfBirth,
-	      experience: $scope.form.experience,
-        technologies: $scope.form.technologies,
-        email: $scope.form.email
+        name: $scope.employeesForm.name,
+	      surname: $scope.employeesForm.surname,
+	      sex: $scope.employeesForm.sex,
+	      phone: $scope.employeesForm.phone,
+	      dateOfBirth: $scope.employeesForm.dateOfBirth,
+	      experience: $scope.employeesForm.experience,
+        technologies: $scope.employeesForm.technologies,
+        email: $scope.employeesForm.email
       }
-      employeesDBService.updateEmployee($scope.form.id, body).then(() => {
+      employeesDBService.updateEmployee($scope.employeesForm.id, body).then(() => {
         $scope.getEmployeesList().then(() => {
           $scope.isEditActive = false;
-          $scope.form = {};
+          $scope.employeesForm = {};
         })
       })
     } else {
-      console.log($scope.form)
-      employeesDBService.addEmployee($scope.form).then(() => {
+      console.log($scope.employeesForm)
+      employeesDBService.addEmployee($scope.employeesForm).then(() => {
         $scope.getEmployeesList().then(() => {
           $scope.isEditActive = false;
-          $scope.form = {};
+          $scope.employeesForm = {};
         });
       })
     }
+    $scope.form.$setPristine();
+    $scope.form.$setUntouched();
   }
   $scope.getEmployeesList();
 })

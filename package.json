@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "testing project",
   "repository": "https://github.com/Terian93/employee-list-client",
+  "author": "Vitaliy Vanchak",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.7.5",

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <div ng-model="myApp" ng-controller="employeeController">
+    <header class="p-3">
+      <form class="form" novalidate>
+        <div class="row">
+          <div class="input-group col">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
+            </div>
+            <input class="form-control" ng-model="form.name" type="text" placeholder="Name">
+          </div>
+
+          <div class="input-group col">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Surame</span>
+            </div>
+            <input class="form-control" ng-model="form.surname" type="text" placeholder="Surame">
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="input-group col">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Sex</span>
+            </div>
+            <input class="form-control col" ng-model="form.sex" type="text" placeholder="Sex">
+          </div>
+
+          <div class="input-group col">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Phone</span>
+            </div>
+            <input class="form-control col" ng-model="form.phone" type="text" placeholder="Phone">
+          </div>
+
+          <div class="input-group col">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Date of birth</span>
+            </div>
+            <input class="form-control col" ng-model="form.dateOfBirth" type="text" placeholder="Date of birth">
+          </div>
+        </div>
+
+        <div class="row pt-2">
+          <div class="input-group col">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Experience</span>
+            </div>
+            <input class="form-control" ng-model="form.experience" type="text" placeholder="experience">
+          </div>
+  
+          <div class="input-group col">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Technologies</span>
+            </div>
+            <input class="form-control" ng-model="form.technologies" type="text" placeholder="technologies">
+          </div>
+
+          <div class="input-group col">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Email</span>
+            </div>
+            <input class="form-control" ng-model="form.email" type="text" placeholder="email">
+          </div>
+        </div>
+        <button class="form-control btn btn-primary mt-2" ng-click="formButton()">{{isEditActive ? 'Update' : 'Add'}}</button>
+      </form>
+    </header>
+    <main>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" ng-click="changeFilter('name')">Name</th>
+            <th scope="col" ng-click="changeFilter('surname')">Surname</th>
+            <th scope="col" ng-click="changeFilter('sex')">Sex</th>
+            <th scope="col" ng-click="changeFilter('phone')">Phone</th>
+            <th scope="col" ng-click="changeFilter('dateOfBirth')">date of birth</th>
+            <th scope="col" ng-click="changeFilter('experience')">exprtience</th>
+            <th scope="col" ng-click="changeFilter('technologies')">technologies</th>
+            <th scope="col" ng-click="changeFilter('email')">email</th>
+            <th scope="col" ng-click="changeFilter('email')"></th>
+          </tr>
+        </thead>
+        <tbody class="tbody-light">
+          <tr ng-repeat="employee in employes | orderBy: filter">
+            <td>{{employee.name}}</td>
+            <td>{{employee.surname}}</td>
+            <td>{{employee.sex}}</td>
+            <td>{{employee.phone}}</td>
+            <td>{{employee.dateOfBirth}}</td>
+            <td>{{employee.experience}}</td>
+            <td>{{employee.technologies}}</td>
+            <td>{{employee.email}}</td>
+            <td>
+              <button class="btn btn-warning" ng-click="sendEmployeeForUpdate(employee)">edit</button>
+              <button class="btn btn-danger" ng-click="deleteEmployee(employee.id)">remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+  
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="core/version/version.js"></script>
+  <script src="core/version/version-directive.js"></script>
+  <script src="core/version/interpolate-filter.js"></script>
+</body>
+</html>

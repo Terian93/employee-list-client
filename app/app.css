@@ -1,0 +1,63 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+/*
+table {
+  width: calc(100% - 6px);
+  border-collapse: collapse;
+  margin: 3px;
+}
+
+tr {
+  min-height: 25px;
+  max-height: 230px;
+}
+
+th {
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.header-row {
+  height: 25px;
+}*/
+
+th {
+  text-align: center;
+}
+
+th:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
